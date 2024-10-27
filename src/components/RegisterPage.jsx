@@ -43,7 +43,7 @@ export default function RegisterPage() {
 
       console.log(newUser);
       //adding new user to the users
-      setUser(newUser, ...user);
+      setUser(newUser, ...users);
     } catch (error) {
       console.error(error);
     }
