@@ -1,16 +1,41 @@
 import NavBar from "./NavBar.jsx";
 
-export default function HomePage() {
+const HomePage = ({
+  cartItems,
+  updateQuantity,
+  total,
+  onCheckout,
+  isOpen,
+  categories,
+  setSelectedCategory,
+  selectedCategory,
+  login,
+}) => {
   return (
     <div>
       <div className="banner">
-        <img src="/images/image.png" alt="logo" width="150" height="150" />
-        <h1 className="text-center">Little Sprouts</h1>
+        <div className="text-container">
+          <h1 className="text-left">Little</h1>
+          <img src="/images/image.png" alt="logo" className="banner-image" />
+          <h1 className="text-right">Sprouts</h1>
+        </div>
       </div>
 
-      <NavBar />
+      <NavBar
+        cartItems={cartItems}
+        updateQuantity={updateQuantity}
+        total={total}
+        onCheckout={onCheckout}
+        isOpen={isOpen}
+        categories={categories}
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+        login={login}
+      />
 
       <div></div>
     </div>
   );
-}
+};
+
+export default HomePage;
