@@ -1,0 +1,136 @@
+.checkout-container {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cart-summary {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.cart-summary h3 {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.cart-summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.checkout-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.checkout-form button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.checkout-form button:hover {
+  background-color: #218838;
+}
+
+.back-button {
+  background-color: #dc3545;
+  margin-top: 10px;
+}
+
+.back-button:hover {
+  background-color: #c82333;
+}
+
+.cart-total {
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .checkout-container {
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .cart-summary h3,
+  .cart-total {
+    font-size: 16px;
+  }
+
+  .checkout-form input {
+    font-size: 12px;
+  }
+
+  .checkout-form button {
+    font-size: 14px;
+  }
+}
+.address-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.address-row select,
+.address-row input {
+  flex: 1;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.tabs button {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.tabs button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.tabs button:hover {
+  background-color: #d0d0d0;
+}

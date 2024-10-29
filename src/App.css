@@ -40,3 +40,104 @@
 .read-the-docs {
   color: #888;
 }
+
+.app-container {
+  display: flex;
+  padding: 20px;
+  position: relative;
+}
+
+.product-display {
+  flex: 3;
+  margin-right: 20px;
+}
+
+.cart-toggle-button {
+  margin-left: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.cart-toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.side-cart {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 300px;
+  max-height: 500px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.side-cart.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background: linear-gradient(to right, #4caf50, #81c784);
+  padding: 20px;
+}
+
+.text-container {
+  display: flex;
+  align-items: center;
+}
+
+.text-left,
+.text-right {
+  font-size: 3rem;
+  color: white;
+  margin: 0 10px;
+}
+
+.banner-image {
+  width: 150px;
+  height: auto;
+}
+
+.banner img {
+  max-width: 100%;
+  height: auto;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.login-container input {
+  margin: 10px 0;
+  padding: 10px;
+  width: 200px;
+}
+
+.login-container button {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
