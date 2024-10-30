@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 export default function RegisterPage() {
+  //state variables for users and formData
   const [users, setUsers] = useState(null);
   const [formData, setFormData] = useState({
     first_name: "",
@@ -16,6 +17,7 @@ export default function RegisterPage() {
     zipcode: "",
   });
   useEffect(() => {
+    //fetch the users data from mongodb users collection
     const fetchUsers = async () => {
       const res = await fetch("http://localhost:4000/api/users");
       const userData = await res.json();
@@ -26,6 +28,7 @@ export default function RegisterPage() {
     fetchUsers();
   }, []);
 
+  //Change event to handle the data received from the user
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -35,7 +38,7 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      //post request to create a new user
+      //post request to create a new user from frontend
       const newUser = await fetch("http://localhost:4000/api/users", {
         method: "POST",
         body: JSON.stringify(formData),
@@ -43,7 +46,7 @@ export default function RegisterPage() {
 
       console.log(newUser);
       //adding new user to the users
-      setUser(newUser, ...users);
+      setUsers(newUser, ...users);
     } catch (error) {
       console.error(error);
     }
@@ -51,6 +54,7 @@ export default function RegisterPage() {
 
   return (
     <>
+      {/* Input form to receive data from the user*/}
       <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="first_name">

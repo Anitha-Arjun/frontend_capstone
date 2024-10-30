@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import StarRating from "./StarRating";
 
 const ProductDisplay = ({ addToCart, selectedCategory }) => {
+  //state variables
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,6 +14,7 @@ const ProductDisplay = ({ addToCart, selectedCategory }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        //fetching data from backend
         const response = await fetch("http://localhost:4000/api/products");
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -40,10 +42,14 @@ const ProductDisplay = ({ addToCart, selectedCategory }) => {
   if (products.length === 0) {
     return <p>No products found.</p>;
   }
+
+  //Displays all the products and filters the products to display based on the category
   const filteredProducts =
     selectedCategory === "All"
       ? products
       : products.filter((product) => product.category === selectedCategory);
+
+  //Displays reviews for the selected products
   const handleShowReviews = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
@@ -57,6 +63,7 @@ const ProductDisplay = ({ addToCart, selectedCategory }) => {
     <div
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
     >
+      {/* array of products */}
       {filteredProducts.map((product) => (
         <div
           key={product.product_id}

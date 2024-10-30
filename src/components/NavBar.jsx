@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import RegisterPage from "./RegisterPage.jsx";
 import App from "../App.jsx";
 import Cart from "./Cart.jsx";
-import Login from "./Login.jsx";
+import Weather from "./Weather.jsx";
 
 const NavBar = ({
   cartItems,
@@ -20,7 +20,7 @@ const NavBar = ({
   selectedCategory,
   login,
 }) => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   return (
     <div
@@ -58,7 +58,7 @@ const NavBar = ({
             {category}
           </h3>
         ))}
-        <button onClick={() => setIsCartOpen(true)}>
+        <button onClick={() => setCartOpen(true)}>
           <i
             className="fas fa-shopping-cart"
             style={{ fontSize: "24px", color: "#007bff" }}
@@ -69,23 +69,10 @@ const NavBar = ({
           updateQuantity={updateQuantity}
           total={total}
           onCheckout={onCheckout}
-          isOpen={isCartOpen}
-          onClose={() => setIsCartOpen(false)}
+          isOpen={cartOpen}
+          onClose={() => setCartOpen(false)}
         />
-        <Link to="/login">
-          <button
-            style={{
-              padding: "10px 15px",
-              cursor: "pointer",
-              backgroundColor: "black",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-            }}
-          >
-            Login
-          </button>
-        </Link>
+        <Weather />
       </div>
     </div>
   );

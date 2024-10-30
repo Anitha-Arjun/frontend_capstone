@@ -7,13 +7,12 @@ import Checkout from "./components/Checkout";
 
 import HomePage from "./components/HomePage";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import Login from "./components/Login";
+import Auth from "./components/Login";
 import ProductOrders from "./components/ProductOrders";
-import BabyNames from "./components/BabyNames";
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckout, setIsCheckout] = useState(false);
@@ -33,9 +32,9 @@ function App() {
   //"Skin Products",
   //"Footwear",
 
-  const handleLogin = (user) => {
-    console.log("Logged in user:", user); // Handles user login
-    setIsLoggedIn(true);
+  const handleAuthSuccess = (user) => {
+    console.log("Logged in user:", user);
+    setIsAuthenticated(true);
   };
 
   const addToCart = (product) => {
@@ -93,35 +92,38 @@ function App() {
   return (
     <>
       <div className="app-container">
-        <div className="product-display">
-          {!isCheckout ? (
-            <>
-              <BabyNames />
-              <HomePage
+        {!isAuthenticated ? (
+          <Auth onAuthSuccess={handleAuthSuccess} />
+        ) : (
+          <div className="product-display">
+            {!isCheckout ? (
+              <>
+                <HomePage
+                  cartItems={cartItems}
+                  updateQuantity={updateQuantity}
+                  total={total}
+                  onCheckout={handleCheckout}
+                  isOpen={isCartOpen}
+                  categories={categories}
+                  setSelectedCategory={setSelectedCategory}
+                  selectedCategory={selectedCategory}
+                  login={handleAuthSuccess}
+                />
+                <ProductDisplay
+                  addToCart={addToCart}
+                  selectedCategory={selectedCategory}
+                />{" "}
+              </>
+            ) : (
+              <Checkout
                 cartItems={cartItems}
-                updateQuantity={updateQuantity}
                 total={total}
-                onCheckout={handleCheckout}
-                isOpen={isCartOpen}
-                categories={categories}
-                setSelectedCategory={setSelectedCategory}
-                selectedCategory={selectedCategory}
-                login={handleLogin}
+                onCheckoutSuccess={handleCheckoutSuccess}
+                onBack={() => setIsCheckout(false)}
               />
-              <ProductDisplay
-                addToCart={addToCart}
-                selectedCategory={selectedCategory}
-              />{" "}
-            </>
-          ) : (
-            <Checkout
-              cartItems={cartItems}
-              total={total}
-              onCheckoutSuccess={handleCheckoutSuccess}
-              onBack={() => setIsCheckout(false)}
-            />
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
