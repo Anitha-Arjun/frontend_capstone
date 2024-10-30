@@ -7,8 +7,7 @@ import Checkout from "./components/Checkout";
 
 import HomePage from "./components/HomePage";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import Auth from "./components/Login";
-import ProductOrders from "./components/ProductOrders";
+import Login from "./components/Login";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -20,6 +19,7 @@ function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  //Different categories of baby products
   const categories = [
     "All",
     "Furniture",
@@ -28,19 +28,20 @@ function App() {
     "Electronics",
     "Skin Products",
   ];
-  //"Toys",
-  //"Skin Products",
-  //"Footwear",
 
+  //authorizing the users
   const handleAuthSuccess = (user) => {
     console.log("Logged in user:", user);
     setIsAuthenticated(true);
   };
 
+  //Adding products to the cart
   const addToCart = (product) => {
+    //checks if the product already exist in cart
     const existingItem = cartItems.find(
       (item) => item.product_id === product.product_id
     );
+    //if exists, increase quantity by 1
     if (existingItem) {
       setCartItems(
         cartItems.map((item) =>
@@ -50,10 +51,12 @@ function App() {
         )
       );
     } else {
+      //new product add to the cart
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
   };
 
+  //function to update the quantity -- if the quantity is 0, removes the item from the cart. Otherwise, updates the quantity in cart
   const updateQuantity = (productId, quantity) => {
     if (quantity <= 0) {
       setCartItems(cartItems.filter((item) => item.product_id !== productId));
@@ -66,6 +69,7 @@ function App() {
     }
   };
 
+  //removes the item from the cart by the product id
   const removeFromCart = (productId) => {
     setCartItems(cart.filter((item) => item.product_id !== productId));
   };
@@ -78,22 +82,25 @@ function App() {
     0
   );
 
+  //function to handle checkout
   const handleCheckout = () => {
     alert("Proceeding to checkout...");
     setIsCheckout(true);
-
-    // checkout logic
   };
+
+  //Function to handle the checkout success
   const handleCheckoutSuccess = () => {
-    setCartItems([]); // Clears the cart
-    setIsCheckout(false); //Goto product display/main page
+    // Clears the cart
+    setCartItems([]);
+    //Goto product display/main page
+    setIsCheckout(false);
   };
 
   return (
     <>
       <div className="app-container">
         {!isAuthenticated ? (
-          <Auth onAuthSuccess={handleAuthSuccess} />
+          <Login onLoginSuccess={handleAuthSuccess} />
         ) : (
           <div className="product-display">
             {!isCheckout ? (

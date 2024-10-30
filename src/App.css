@@ -143,15 +143,14 @@
 }
 
 .weather-container {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 20px;
-  text-align: center;
+  padding: 125px;
+  margin-top: 100px;
+  margin-right: -400px;
+  text-align: right;
 }
 
 .weather-info {
-  margin-top: 20px;
+  margin-bottom: -200px;
 }
 
 .error {

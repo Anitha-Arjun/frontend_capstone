@@ -6,9 +6,9 @@ const statesList = [
   { code: "AL", name: "Alabama" },
   { code: "AK", name: "Alaska" },
   { code: "AZ", name: "Arizona" },
-  // add remaining states...
 ];
 
+//state variables for all the form data
 const Checkout = ({ cartItems, total, onCheckoutSuccess, onBack }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -22,6 +22,7 @@ const Checkout = ({ cartItems, total, onCheckoutSuccess, onBack }) => {
   const [errors, setErrors] = useState({});
   const [orderStatus, setOrderStatus] = useState(null);
 
+  //Validating that form needs to have all the necessary inputs
   const validate = () => {
     const newErrors = {};
     if (!firstName) newErrors.firstName = "First name is required.";
@@ -42,6 +43,7 @@ const Checkout = ({ cartItems, total, onCheckoutSuccess, onBack }) => {
     return newErrors;
   };
 
+  //function to handle checkouts
   const handleCheckout = (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -54,8 +56,10 @@ const Checkout = ({ cartItems, total, onCheckoutSuccess, onBack }) => {
     onCheckoutSuccess();
   };
 
+  //function to handle the orderdata
   const handleOrder = async () => {
     const orderData = {
+      //generate random order id
       order_id: Math.floor(Math.random() * 100000),
       total_amount: total,
       status: "pending",
@@ -68,9 +72,11 @@ const Checkout = ({ cartItems, total, onCheckoutSuccess, onBack }) => {
     };
 
     try {
+      //sends the post request to place order
       const response = await fetch("http://localhost:4000/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        //converts to json
         body: JSON.stringify(orderData),
       });
       if (response.ok) {
@@ -93,6 +99,7 @@ const Checkout = ({ cartItems, total, onCheckoutSuccess, onBack }) => {
           <p>Your cart is empty.</p>
         ) : (
           <ul>
+            {/* renders the items for each product in cart*/}
             {cartItems.map((item) => (
               <li key={item.product_id}>
                 {item.product_name} - ${item.price.toFixed(2)} x {item.quantity}

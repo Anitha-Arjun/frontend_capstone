@@ -1,4 +1,5 @@
 import NavBar from "./NavBar.jsx";
+import Weather from "./Weather.jsx";
 
 const HomePage = ({
   cartItems,
@@ -18,6 +19,8 @@ const HomePage = ({
           <h1 className="text-left">Little</h1>
           <img src="/images/image.png" alt="logo" className="banner-image" />
           <h1 className="text-right">Sprouts</h1>
+          {/* Third Party Weather API to display the current weather in Houstion */}
+          <Weather className="weather-align-right" />
         </div>
       </div>
 

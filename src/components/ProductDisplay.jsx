@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Modal from "./Modal";
+import Reviews from "./Reviews";
 import StarRating from "./StarRating";
 
 const ProductDisplay = ({ addToCart, selectedCategory }) => {
@@ -112,7 +112,7 @@ const ProductDisplay = ({ addToCart, selectedCategory }) => {
           </button>
 
           {isModalOpen && selectedProduct && (
-            <Modal
+            <Reviews
               isOpen={isModalOpen}
               onClose={handleCloseModal}
               reviews={selectedProduct.reviews}

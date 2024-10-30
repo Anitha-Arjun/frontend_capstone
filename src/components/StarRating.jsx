@@ -9,7 +9,7 @@ const StarRating = ({ rating }) => {
         <i
           key={index}
           className={`fas fa-star ${index < rating ? "filled" : ""}`}
-          //Colors to the starts gold for review and silver for empty
+          //Colors to the stars: gold for review and silver for empty
           style={{ color: index < rating ? "#ffd700" : "#ccc" }}
         ></i>
       );

@@ -10,10 +10,10 @@ const Login = ({ onLoginSuccess }) => {
 
   //Event handler for sumbit
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); //prevents the default behavior
     setError(null);
 
-    //Checks the url whether it is login or registering a new user
+    //whether it is login or registering a new user
     const url = register
       ? "http://localhost:4000/api/login/register"
       : "http://localhost:4000/api/login";
@@ -28,7 +28,7 @@ const Login = ({ onLoginSuccess }) => {
 
       if (response.ok) {
         const data = await response.json();
-        //Checks for successful login or registration
+        //function to handle successful login or registration
         onLoginSuccess(data);
       } else {
         const errorData = await response.json();

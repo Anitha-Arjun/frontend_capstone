@@ -1,7 +1,7 @@
 import React from "react";
-import "./Modal.css"; // Optional: For styling the modal
+import "./Reviews.css";
 
-const Modal = ({ isOpen, onClose, reviews }) => {
+const Review = ({ isOpen, onClose, reviews }) => {
   if (!isOpen) return null;
 
   return (
@@ -28,4 +28,4 @@ const Modal = ({ isOpen, onClose, reviews }) => {
   );
 };
 
-export default Modal;
+export default Review;

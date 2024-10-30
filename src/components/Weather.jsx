@@ -1,12 +1,11 @@
-// src/Weather.js
 import React, { useEffect, useState } from "react";
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
-  const [location, setLocation] = useState("London"); 
+  const [location, setLocation] = useState("Houston");
   const [error, setError] = useState(null);
 
-  const apiKey = "ebc4255d756b6a2f33cb17c769332546"; 
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const fetchWeatherData = async () => {
     try {
       const response = await fetch(
@@ -17,10 +16,10 @@ const Weather = () => {
       }
       const data = await response.json();
       setWeatherData(data);
-      setError(null); // Clear any previous errors
+      setError(null);
     } catch (err) {
       setError(err.message);
-      setWeatherData(null); // Clear previous data
+      setWeatherData(null);
     }
   };
 
@@ -39,23 +38,12 @@ const Weather = () => {
 
   return (
     <div className="weather-container">
-      <h2>Weather Information</h2>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          value={location}
-          onChange={handleLocationChange}
-          placeholder="Enter city name"
-        />
-        <button type="submit">Get Weather</button>
-      </form>
       {error && <p className="error">{error}</p>}
       {weatherData && (
         <div className="weather-info">
-          <h3>{weatherData.name}</h3>
-          <p>Temperature: {weatherData.main.temp} °C</p>
-          <p>Weather: {weatherData.weather[0].description}</p>
-          <p>Humidity: {weatherData.main.humidity}%</p>
+          <h3>
+            {weatherData.name} {weatherData.main.temp} °C
+          </h3>
         </div>
       )}
     </div>

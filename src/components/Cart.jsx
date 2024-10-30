@@ -2,10 +2,10 @@ import React from "react";
 import "./Cart.css";
 
 const Cart = ({
-  cartItems,
-  updateQuantity,
+  cartItems, //array of items
+  updateQuantity, //function to handle update on quantity
   total,
-  onCheckout,
+  onCheckout, //function to handle checkout
   isOpen,
   onClose,
 }) => {
@@ -19,9 +19,11 @@ const Cart = ({
           <p className="empty-cart">Your cart is empty.</p>
         ) : (
           <ul className="cart-items">
+            {/* Map over cart items */}
             {cartItems.map((item) => (
               <li key={item.product_id} className="cart-item">
                 <div className="cart-item-details">
+                  {/* cart items will be displayed with image, product_name, price */}
                   <img
                     src={item.imageUrl}
                     alt={item.product_name}
@@ -35,6 +37,7 @@ const Cart = ({
                   </div>
                 </div>
                 <div className="cart-item-quantity">
+                  {/* To update the quantity of product in the cart by adding and deleting the product */}
                   <button
                     onClick={() =>
                       updateQuantity(item.product_id, item.quantity - 1)
